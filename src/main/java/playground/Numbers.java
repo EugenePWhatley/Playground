@@ -10,7 +10,7 @@ public class Numbers {
     public static List<Integer> multiplyByTwo(List<Integer> input) {
         List<Integer> result = new ArrayList<>();
         for (Integer integer : input) {
-            result.add(integer * 2);
+            result.add(timesTwo(integer));
         }
         return result;
     }
@@ -18,14 +18,18 @@ public class Numbers {
     public static List<Integer> multiplyByTwoFunctional(List<Integer> input) {
         return input
                 .stream()
-                .map(i -> i * 2)
+                .map(Numbers::timesTwo)
                 .collect(Collectors.toList());
+    }
+
+    private static int timesTwo(Integer integer) {
+        return integer * 2;
     }
 
     public static List<Integer> filterEvenNumbers(List<Integer> input) {
         List<Integer> result = new ArrayList<>();
         for (Integer integer : input) {
-            if (integer % 2 == 0) result.add(integer);
+            if (isEven(integer)) result.add(integer);
         }
         return result;
     }
@@ -33,8 +37,12 @@ public class Numbers {
     public static List<Integer> filterEvenNumbersFunctional(List<Integer> input) {
         return input
                 .stream()
-                .filter(i -> i % 2 == 0)
+                .filter(Numbers::isEven)
                 .collect(Collectors.toList());
+    }
+
+    private static boolean isEven(Integer integer) {
+        return integer % 2 == 0;
     }
 
     public static Integer sum(List<Integer> input) {
