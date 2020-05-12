@@ -7,7 +7,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class NumbersTest {
 
     List<Integer> input = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
@@ -64,4 +63,16 @@ public class NumbersTest {
                 .isEqualTo(expected);
     }
 
+    @Test
+    void test_combineMultipleFunctions() {
+        int expected = 60;
+
+        // Traditional
+        assertThat(Numbers.calculateSumOfEvenNumbersTimes2(input))
+                .isEqualTo(expected);
+
+        // Functional
+        assertThat(Numbers.calculateSumOfEvenNumbersTimes2Functional(input))
+                .isEqualTo(expected);
+    }
 }

@@ -46,7 +46,7 @@ public class Numbers {
     }
 
     public static Integer sum(List<Integer> input) {
-        Integer result = 0;
+        int result = 0;
         for (Integer integer : input) {
             result += integer;
         }
@@ -54,9 +54,10 @@ public class Numbers {
     }
 
     public static Integer sumFunctional(List<Integer> input) {
+        int initial = 0;
         return input
                 .stream()
-                .reduce(0, Integer::sum);
+                .reduce(initial, Integer::sum);
     }
 
     public static List<Integer> sortOddFirst(List<Integer> input) {
@@ -70,4 +71,24 @@ public class Numbers {
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
     }
+
+    public static Integer calculateSumOfEvenNumbersTimes2(List<Integer> input) {
+        int result = 0;
+        for (Integer integer : input) {
+            if (isEven(integer)) {
+                result += timesTwo(integer);
+            }
+        }
+        return result;
+    }
+
+    public static Integer calculateSumOfEvenNumbersTimes2Functional(List<Integer> input) {
+        int initial = 0;
+        return input
+                .stream()
+                .filter(Numbers::isEven)
+                .map(Numbers::timesTwo)
+                .reduce(initial, Integer::sum);
+    }
+
 }
